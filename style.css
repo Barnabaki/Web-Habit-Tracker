@@ -1,0 +1,57 @@
+body {
+  background-color: black;
+}
+
+.mainHeader {
+  color: whitesmoke;
+  font-family: 'Roboto Mono', monospace;
+  text-align: left;
+  margin: 50px;
+}
+
+.square {
+  width: 25px;
+  height: 25px;
+  margin: 2px;
+  background-color: #161b22;
+  border-radius: 5px;
+}
+
+#calendar {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1600px;
+  justify-content: center;
+}
+
+.col {
+  margin: 0;
+  /* Add any other styles you want for the .col class here */
+}
+
+.weekCol {
+  margin-top: 5px;
+  color: whitesmoke;
+  font-family: 'Roboto Mono', monospace;
+  text-align: left;
+  margin-right: 6px;
+}
+/*
+
+font-family: 'Raleway', sans-serif;
+font-family: 'Roboto Mono', monospace;
+
+Min 
+#161b22
+
+#0e4429
+#26a641
+#39d353
+#39FF53
+Max
+
+#054a91
+#3e7cb1
+#81a4cd
+#dbe4ee
+*/
