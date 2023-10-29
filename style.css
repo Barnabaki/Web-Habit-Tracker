@@ -13,7 +13,6 @@ body {
   width: 25px;
   height: 25px;
   margin: 2px;
-  background-color: #161b22;
   border-radius: 5px;
 }
 
@@ -29,12 +28,24 @@ body {
   /* Add any other styles you want for the .col class here */
 }
 
+.noActivity {
+  background-color: #161b22;
+}
+
 .weekCol {
   margin-top: 5px;
   color: whitesmoke;
   font-family: 'Roboto Mono', monospace;
   text-align: left;
   margin-right: 6px;
+}
+
+.colored {
+  width: 25px;
+  height: 25px;
+  margin: 2px;
+  border-radius: 5px;
+  background-color: #26a641;
 }
 /*
 
