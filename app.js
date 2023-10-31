@@ -88,8 +88,8 @@ for (let week = 0; week < 54; week++) {
 
 const nextButton = document.querySelector('#nextButton');
 
-nextButton.onclick = function () {
-  console.log('nextButton');
+logButton.onclick = function () {
+  console.log('logButton');
   // Get the current date
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
@@ -101,12 +101,80 @@ nextButton.onclick = function () {
   addClassToElement(formattedDate);
 };
 
+
+// Function to save the class assignments to localStorage
+function saveDataToStorage(savedDays) {
+  localStorage.setItem('savedDays', JSON.stringify(savedDays));
+}
+
+// Function to load the class assignments from localStorage
+function loadDataFromStorage() {
+  const savedDaysData = localStorage.getItem('savedDays');
+  return savedDaysData ? JSON.parse(savedDaysData) : {};
+}
+
+// Function to update the page with the saved data
+function updatePageWithSavedData(savedDays) {
+  for (const day in savedDays) {
+    const element = document.getElementById(day);
+    if (element) {
+      const assignedClass = savedDays[day];
+      element.className = '';
+      if (classes.includes(assignedClass)) {
+        element.classList.add(assignedClass);
+      }
+    }
+  }
+}
+
+// Save the data to storage when the save button is clicked
+saveButton.onclick = function () {
+  const currentDate = new Date();
+  const currentYear = currentDate.getFullYear();
+  const currentMonth = currentDate.getMonth() + 1; // Months are zero-based
+  const currentDay = currentDate.getDate();
+  const formattedDate = `${currentDay}.${currentMonth}.${currentYear}`;
+  var element = document.getElementById(formattedDate);
+
+  if (element) {
+    savedDays[formattedDate] = element.className;
+    // Save the updated data to localStorage
+    saveDataToStorage(savedDays);
+  }
+};
+
+// Load the saved data from storage and update the page when it loads
+window.addEventListener('load', function () {
+  const savedDaysData = loadDataFromStorage();
+  updatePageWithSavedData(savedDaysData);
+});
+
+
+
+
+const savedDays = {"20.11.2023": 'activityLevel-1', "21.10.2023": 'activityLevel-4'};
+const classes = ['activityLevel-1', 'activityLevel-2', 'activityLevel-3', 'activityLevel-4', 'noActivity'];
+
+function loadData(savedDays) {
+  for (const day in savedDays) {
+    const element = document.getElementById(day);
+    if (element) {
+
+      element.className = '';
+      const assignedClass = savedDays[day];
+
+      if (classes.includes(assignedClass)) {
+        element.classList.add(assignedClass);
+      }
+    }
+  }
+}
+
 function addClassToElement(formattedDate) {
   var element = document.getElementById(formattedDate);
 
   if (element) {
     console.log('addClassToElement');
-    var classes = ['activityLevel-1', 'activityLevel-2', 'activityLevel-3', 'activityLevel-4', 'noActivity'];
 
     // Get the current class name of the element
     var currentClass = element.className;
@@ -124,3 +192,22 @@ function addClassToElement(formattedDate) {
     element.classList.add(classes[nextIndex]);
   }
 }
+
+
+loadData(savedDays);
+
+
+
+/*
+1. get rid of the repeteation (current date, element?s)
+2. comment all the key features
+3. add a user sign up and log in 
+4. find a way to backup the info when clicking save
+5. load the backup
+
+
+Extra:
+- add different colours
+- make it nicer (border around the calendar, light-mode)
+- ability to create different calendars with different colours and titles
+*/
